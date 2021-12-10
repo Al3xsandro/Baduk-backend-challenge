@@ -7,8 +7,8 @@
    "scripts": {
       "prebuild": "rimraf dist",
       "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
-      "start": "node dist/shared/infra/server.ts",
-      "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/shared/infra/server.ts",
+      "start": "node dist/shared/infra/http/server.ts",
+      "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
       "typeorm": "NODE_ENV=test ts-node-dev ./node_modules/typeorm/cli.js",
       "test": "NODE_ENV=test jest --runInBand --detectOpenHandles"
    },
