@@ -1,0 +1,11 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Baduk documentation",
+        "description": "This is baduk ecommerce API",
+        "version": "1.0.0",
+        "contact": {
+            "email": "developer@developer.site"
+        }
+    }
+}
