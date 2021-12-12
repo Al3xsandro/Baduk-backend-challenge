@@ -7,5 +7,108 @@
         "contact": {
             "email": "developer@developer.site"
         }
+    },
+    "paths": {
+        "/customers": {
+            "post": {
+                "summary": "Create a new customer",
+                "description": "You can to create a new customer!",
+                "tags": ["customer"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateCustomer"
+                            },
+                            "examples": {
+                                "value": {
+                                    "name": "customer",
+                                    "email": "customer@customer.com",
+                                    "telefone": "11996066964"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Customer"
+                        }
+                    },
+                    "400": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Error"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "Get all customers!",
+                "description": "You can to receive all customers!",
+                "tags": ["customer"],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Customer"
+                        }
+                    },
+                    "400": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CreateCustomer": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "telefone": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Customer": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "telefone": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Error": {
+                "type": "object",
+                "properties": {
+                    "error": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
     }
 }
