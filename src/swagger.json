@@ -196,7 +196,7 @@
                         "type": "number"
                     },
                     "quantity": {
-                        "type": "string"
+                        "type": "number"
                     }
                 }
             },
@@ -213,7 +213,7 @@
                         "type": "number"
                     },
                     "quantity": {
-                        "type": "string"
+                        "type": "number"
                     },
                     "updated_at": {
                         "type": "string"
@@ -238,7 +238,7 @@
                             "type": "number"
                         },
                         "quantity": {
-                            "type": "string"
+                            "type": "number"
                         },
                         "updated_at": {
                             "type": "string"
