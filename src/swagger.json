@@ -13,7 +13,9 @@
             "post": {
                 "summary": "Create a new customer",
                 "description": "You can to create a new customer!",
-                "tags": ["customer"],
+                "tags": [
+                    "Customers"
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -32,13 +34,21 @@
                 },
                 "responses": {
                     "200": {
-                        "schema": {
-                            "$ref": "#/components/schemas/Customer"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Customer"
+                                }
+                            }
                         }
                     },
                     "400": {
-                        "schema": {
-                            "$ref": "#/components/schemas/Error"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
                         }
                     }
                 }
@@ -46,16 +56,91 @@
             "get": {
                 "summary": "Get all customers!",
                 "description": "You can to receive all customers!",
-                "tags": ["customer"],
+                "tags": [
+                    "Customers"
+                ],
                 "responses": {
                     "200": {
-                        "schema": {
-                            "$ref": "#/components/schemas/Customer"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Customer"
+                                }
+                            }
                         }
                     },
                     "400": {
-                        "schema": {
-                            "$ref": "#/components/schemas/Error"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/products": {
+            "post": {
+                "summary": "Create a new product",
+                "description": "You can to create a new product!",
+                "tags": [
+                    "Products"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateProduct"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "Get all products",
+                "description": "You can to receive all products!",
+                "tags": [
+                    "Products"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Products"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
                         }
                     }
                 }
@@ -98,6 +183,69 @@
                     },
                     "created_at": {
                         "type": "string"
+                    }
+                }
+            },
+            "CreateProduct": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "number"
+                    },
+                    "quantity": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Product": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "number"
+                    },
+                    "quantity": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Products": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "price": {
+                            "type": "number"
+                        },
+                        "quantity": {
+                            "type": "string"
+                        },
+                        "updated_at": {
+                            "type": "string"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        }
                     }
                 }
             },
