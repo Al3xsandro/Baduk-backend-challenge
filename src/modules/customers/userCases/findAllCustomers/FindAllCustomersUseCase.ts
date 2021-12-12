@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
-import { ICustomerRepository } from "../../repositories/ICustumerRepository";
+import { ICustomerRepository } from "@modules/customers/repositories/ICustumerRepository";
 
 @injectable()
 class FindAllCustomersUseCase {

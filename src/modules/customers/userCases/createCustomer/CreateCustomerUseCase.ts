@@ -1,8 +1,8 @@
 import { inject, injectable } from "tsyringe";
 
-import { AppError } from "../../../../shared/errors/AppError";
-import { ICreateCustumerDTO } from "../../dtos/ICreateCustomer.dto";
-import { ICustomerRepository } from "../../repositories/ICustumerRepository";
+import { ICreateCustumerDTO } from "@modules/customers/dtos/ICreateCustomer.dto";
+import { ICustomerRepository } from "@modules/customers/repositories/ICustumerRepository";
+import { AppError } from "@shared/errors/AppError";
 
 @injectable()
 class CreateCustomerUseCase {

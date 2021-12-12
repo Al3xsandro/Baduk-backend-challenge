@@ -1,9 +1,9 @@
 import { getRepository, Repository } from "typeorm";
 
-import { AppError } from "../../../../../../shared/errors/AppError";
-import { ICreateCustumerDTO } from "../../../../dtos/ICreateCustomer.dto";
-import { ICustomerRepository } from "../../../../repositories/ICustumerRepository";
-import { Customer } from "../../entities/Custumer";
+import { ICreateCustumerDTO } from "@modules/customers/dtos/ICreateCustomer.dto";
+import { Customer } from "@modules/customers/infra/typeorm/entities/Custumer";
+import { ICustomerRepository } from "@modules/customers/repositories/ICustumerRepository";
+import { AppError } from "@shared/errors/AppError";
 
 class CustumerRepository implements ICustomerRepository {
   private repostory: Repository<Customer>;

@@ -1,7 +1,7 @@
-import { AppError } from "../../../../shared/errors/AppError";
-import { ICustomerRepository } from "../../repositories/ICustumerRepository";
-import { CustomerRepositoryInMemory } from "../../repositories/implementations/in-memory/CustomerRepositoryInMemory";
-import { CreateCustomerUseCase } from "./CreateCustomerUseCase";
+import { ICustomerRepository } from "@modules/customers/repositories/ICustumerRepository";
+import { CustomerRepositoryInMemory } from "@modules/customers/repositories/implementations/in-memory/CustomerRepositoryInMemory";
+import { CreateCustomerUseCase } from "@modules/customers/userCases/createCustomer/CreateCustomerUseCase";
+import { AppError } from "@shared/errors/AppError";
 
 describe("Customers", () => {
   let customerRepositoryInMemory: ICustomerRepository;

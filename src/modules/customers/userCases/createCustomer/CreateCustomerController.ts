@@ -2,8 +2,9 @@ import { Request, Response } from "express";
 import { container } from "tsyringe";
 import validator from "validator";
 
-import { AppError } from "../../../../shared/errors/AppError";
-import { ICreateCustumerDTO } from "../../dtos/ICreateCustomer.dto";
+import { ICreateCustumerDTO } from "@modules/customers/dtos/ICreateCustomer.dto";
+import { AppError } from "@shared/errors/AppError";
+
 import { CreateCustomerUseCase } from "./CreateCustomerUseCase";
 
 class CreateCustomerController {
