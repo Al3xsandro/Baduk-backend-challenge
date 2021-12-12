@@ -8,9 +8,9 @@
       "prebuild": "rimraf dist",
       "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
       "start": "node ./dist/shared/infra/http/server.js",
-      "dev": "NODE_ENV=test ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
+      "dev": "NODE_ENV=test ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
       "lint": "eslint --fix",
-      "typeorm": "NODE_ENV=test ts-node-dev ./node_modules/typeorm/cli.js",
+      "typeorm": "NODE_ENV=test ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
       "test": "NODE_ENV=test jest --runInBand --detectOpenHandles"
    },
    "dependencies": {
@@ -56,6 +56,7 @@
       "prettier": "^2.5.1",
       "ts-jest": "^27.1.1",
       "ts-node-dev": "^1.1.8",
+      "tsconfig-paths": "^3.12.0",
       "typescript": "^4.5.3"
    }
 }
