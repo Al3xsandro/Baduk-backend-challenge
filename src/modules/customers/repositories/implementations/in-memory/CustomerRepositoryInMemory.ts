@@ -1,6 +1,5 @@
-import { ICreateCustumerDTO } from "src/modules/customers/dtos/ICreateCustomer.dto";
-import { Customer } from "src/modules/customers/infra/typeorm/entities/Custumer";
-
+import { ICreateCustumerDTO } from "../../../dtos/ICreateCustomer.dto";
+import { Customer } from "../../../infra/typeorm/entities/Custumer";
 import { ICustomerRepository } from "../../ICustumerRepository";
 
 class CustomerRepositoryInMemory implements ICustomerRepository {
