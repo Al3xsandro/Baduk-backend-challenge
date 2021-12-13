@@ -145,6 +145,44 @@
                     }
                 }
             }
+        },
+        "/orders": {
+            "post": {
+                "summary": "Create a new order",
+                "description": "You can to create a new order!",
+                "tags": [
+                    "Orders"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateOrder"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Orders"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -246,6 +284,65 @@
                         "created_at": {
                             "type": "string"
                         }
+                    }
+                }
+            },
+            "CreateOrder": {
+                "type": "object",
+                "properties": {
+                    "customerId": {
+                        "type": "string"
+                    },
+                    "totalPrice": {
+                        "type": "number"
+                    },
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "quantity": {
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "Orders": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "customerId": {
+                        "type": "string"
+                    },
+                    "totalPrice": {
+                        "type": "number"
+                    },
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "quantity": {
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
                     }
                 }
             },
