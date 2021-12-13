@@ -182,6 +182,65 @@
                         }
                     }
                 }
+            },
+            "get": {
+                "summary": "Get all orders",
+                "description": "You can to receive all orders!",
+                "tags": ["Orders"],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "Paginate result orders",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "up_price",
+                        "description": "Find orders by up price",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "below_price",
+                        "description": "Find orders by below price",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "date",
+                        "description": "Find orders by date",
+                        "schema": {
+                            "type": "timestamp"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AllOrders"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },
@@ -343,6 +402,43 @@
                     },
                     "created_at": {
                         "type": "string"
+                    }
+                }
+            },
+            "AllOrders": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "customerId": {
+                            "type": "string"
+                        },
+                        "totalPrice": {
+                            "type": "number"
+                        },
+                        "products": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "quantity": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        },
+                        "updated_at": {
+                            "type": "string"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        }
                     }
                 }
             },
