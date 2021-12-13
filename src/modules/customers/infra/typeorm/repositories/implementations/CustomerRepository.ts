@@ -46,6 +46,14 @@ class CustumerRepository implements ICustomerRepository {
 
     return customer;
   }
+
+  async findById(id: string): Promise<Customer> {
+    const customer = await this.repostory.findOne({
+      id,
+    });
+
+    return customer;
+  }
 }
 
 export { CustumerRepository };
