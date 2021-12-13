@@ -1,4 +1,9 @@
-import { getRepository, Repository } from "typeorm";
+import {
+  getRepository,
+  LessThanOrEqual,
+  MoreThanOrEqual,
+  Repository,
+} from "typeorm";
 
 import { ICreateOrderDTO } from "@modules/orders/dtos/ICreateOrderDTO";
 import { IOrdersRepository } from "@modules/orders/repositories/IOrdersRepository";
@@ -27,27 +32,84 @@ class OrdersRepository implements IOrdersRepository {
 
     return order;
   }
-  async findByProductId(product_id: string): Promise<Order[]> {
-    const product = await this.repository.find({
-      where: {
-        products: [
-          {
-            id: product_id,
-          },
-        ],
+
+  async findAllOrders(skip: number): Promise<Order[]> {
+    const orders = await this.repository.find({
+      skip: !skip ? 1 : Number(skip),
+      take: 10,
+      cache: 60000,
+      order: {
+        totalPrice: "DESC",
+        created_at: "DESC",
       },
     });
 
-    return product;
+    return orders;
   }
-  async findByDate(first_date: Date, last_date: Date): Promise<Order[]> {
-    throw new Error("Method not implemented.");
+
+  async findByProductId(product_id: string): Promise<Order[]> {
+    const allOrders = [];
+
+    const orders = await this.repository.find({
+      take: 5,
+    });
+
+    orders.map((order) => {
+      const parseProductsToString = JSON.stringify(order.products.toString());
+      const productOrders = parseProductsToString.includes(product_id);
+
+      const product = productOrders;
+
+      if (product) {
+        return allOrders.push(orders);
+      }
+
+      return [];
+    });
+
+    return allOrders;
   }
-  async findByUpPrice(price: string): Promise<Order[]> {
-    throw new Error("Method not implemented.");
+
+  async findByDate(date: Date): Promise<Order[]> {
+    const orders = await this.repository.find({
+      order: {
+        totalPrice: "DESC",
+        created_at: "DESC",
+      },
+      where: {
+        created_at: MoreThanOrEqual(date),
+      },
+    });
+
+    return orders;
   }
-  async findByBelowPrice(price: string): Promise<Order[]> {
-    throw new Error("Method not implemented.");
+
+  async findByUpPrice(price: number): Promise<Order[]> {
+    const orders = await this.repository.find({
+      order: {
+        totalPrice: "DESC",
+        created_at: "DESC",
+      },
+      where: {
+        totalPrice: MoreThanOrEqual(price),
+      },
+    });
+
+    return orders;
+  }
+
+  async findByBelowPrice(price: number): Promise<Order[]> {
+    const orders = await this.repository.find({
+      order: {
+        totalPrice: "DESC",
+        created_at: "DESC",
+      },
+      where: {
+        totalPrice: LessThanOrEqual(price),
+      },
+    });
+
+    return orders;
   }
 }
 
