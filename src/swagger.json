@@ -219,6 +219,14 @@
                         "schema": {
                             "type": "timestamp"
                         }
+                    },
+                    {
+                        "in": "query",
+                        "name": "product_id",
+                        "description": "Find orders by product_id",
+                        "schema": {
+                            "type": "timestamp"
+                        }
                     }
                 ],
                 "responses": {
