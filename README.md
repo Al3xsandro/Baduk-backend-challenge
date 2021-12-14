@@ -39,7 +39,7 @@
 
 ```bash
 # development
-$ yarn start
+$ yarn dev
 
 # build
 $ yarn build
