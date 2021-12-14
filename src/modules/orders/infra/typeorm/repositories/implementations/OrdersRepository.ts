@@ -47,10 +47,11 @@ class OrdersRepository implements IOrdersRepository {
     return orders;
   }
 
-  async findByProductId(product_id: string): Promise<Order[]> {
+  async findByProductId(product_id: string, skip: number): Promise<Order[]> {
     const allOrders = [];
 
     const orders = await this.repository.find({
+      skip: !skip ? 1 : Number(skip),
       take: 5,
     });
 

@@ -25,7 +25,10 @@ class FindOrdersUseCase {
         throw new AppError("Invalid product_id");
       }
 
-      const order = await this.ordersRepository.findByProductId(product_id);
+      const order = await this.ordersRepository.findByProductId(
+        product_id,
+        page
+      );
 
       return order;
     }
