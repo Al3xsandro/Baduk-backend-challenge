@@ -26,7 +26,7 @@ class FindOrdersUseCase {
       }
 
       const order = await this.ordersRepository.findByProductId(
-        product_id,
+        String(product_id),
         page
       );
 

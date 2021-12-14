@@ -48,27 +48,13 @@ class OrdersRepository implements IOrdersRepository {
   }
 
   async findByProductId(product_id: string, skip: number): Promise<Order[]> {
-    const allOrders = [];
+    const testquery = await this.repository.query(
+      `SELECT * FROM orders WHERE array_to_string(products, ',') like '%${product_id}%' offset ${
+        !skip ? 1 : Number(skip)
+      }`
+    );
 
-    const orders = await this.repository.find({
-      skip: !skip ? 1 : Number(skip),
-      take: 5,
-    });
-
-    orders.map((order) => {
-      const parseProductsToString = JSON.stringify(order.products.toString());
-      const productOrders = parseProductsToString.includes(product_id);
-
-      const product = productOrders;
-
-      if (product) {
-        return allOrders.push(orders);
-      }
-
-      return [];
-    });
-
-    return allOrders;
+    return testquery;
   }
 
   async findByDate(date: Date): Promise<Order[]> {
