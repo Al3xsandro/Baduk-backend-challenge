@@ -48,13 +48,13 @@ class OrdersRepository implements IOrdersRepository {
   }
 
   async findByProductId(product_id: string, skip: number): Promise<Order[]> {
-    const testquery = await this.repository.query(
+    const orders = await this.repository.query(
       `SELECT * FROM orders WHERE array_to_string(products, ',') like '%${product_id}%' offset ${
         !skip ? 1 : Number(skip)
       }`
     );
 
-    return testquery;
+    return orders;
   }
 
   async findByDate(date: Date): Promise<Order[]> {
