@@ -52,7 +52,7 @@ class OrdersRepository implements IOrdersRepository {
     }
 
     if (date) {
-      ordersQuery.andWhere("orders.created_at = :date", {
+      ordersQuery.andWhere("orders.created_at >= :date", {
         date,
       });
     }

@@ -27,13 +27,7 @@ class OrdersRepositoryInMemory implements IOrdersRepository {
     return this.ordersRepository;
   }
 
-  find({
-    below_price,
-    date,
-    page,
-    product_id,
-    up_price,
-  }: IFindOrderDTO): Promise<Order[]> {
+  find(): Promise<Order[]> {
     throw new Error("Method not implemented.");
   }
 }
