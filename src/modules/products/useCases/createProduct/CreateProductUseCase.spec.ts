@@ -2,16 +2,16 @@ import { ProductRepositoryInMemory } from "@modules/products/repositories/implem
 import { IProductsRepository } from "@modules/products/repositories/IProductsRepository";
 
 describe("Products", () => {
-  let productsRespository: IProductsRepository;
+  let productsRepository: IProductsRepository;
 
   beforeAll(() => {
-    productsRespository = new ProductRepositoryInMemory();
+    productsRepository = new ProductRepositoryInMemory();
 
-    expect(productsRespository).toBeDefined();
+    expect(productsRepository).toBeDefined();
   });
 
   it("should be able to create a new product", async () => {
-    const product = await productsRespository.create({
+    const product = await productsRepository.create({
       name: "Apples",
       price: 95,
       quantity: 200,
