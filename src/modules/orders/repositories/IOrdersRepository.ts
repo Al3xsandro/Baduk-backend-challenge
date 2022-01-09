@@ -3,11 +3,13 @@ import { Order } from "../infra/typeorm/entities/Order";
 
 interface IOrdersRepository {
   create({ customerId, products }: ICreateOrderDTO): Promise<Order>;
-  findAllOrders(skip: number): Promise<Order[]>;
-  findByProductId(product_id: string, skip: number): Promise<Order[]>;
-  findByDate(first_date: Date): Promise<Order[]>;
-  findByUpPrice(price: number): Promise<Order[]>;
-  findByBelowPrice(price: number): Promise<Order[]>;
+  find(
+    page?: number,
+    product_id?: string,
+    below_price?: number,
+    up_price?: number,
+    date?: Date
+  ): Promise<Order[]>;
 }
 
 export { IOrdersRepository };

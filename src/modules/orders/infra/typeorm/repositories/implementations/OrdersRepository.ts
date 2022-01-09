@@ -1,9 +1,4 @@
-import {
-  getRepository,
-  LessThanOrEqual,
-  MoreThanOrEqual,
-  Repository,
-} from "typeorm";
+import { getRepository, Repository } from "typeorm";
 
 import { ICreateOrderDTO } from "@modules/orders/dtos/ICreateOrderDTO";
 import { IOrdersRepository } from "@modules/orders/repositories/IOrdersRepository";
@@ -33,68 +28,36 @@ class OrdersRepository implements IOrdersRepository {
     return order;
   }
 
-  async findAllOrders(skip: number): Promise<Order[]> {
-    const orders = await this.repository.find({
-      skip: !skip ? 1 : Number(skip),
-      take: 10,
-      cache: 60000,
-      order: {
-        totalPrice: "DESC",
-        created_at: "DESC",
-      },
-    });
+  async find(
+    page?: number,
+    product_id?: string,
+    below_price?: number,
+    up_price?: number,
+    date?: Date
+  ): Promise<Order[]> {
+    const ordersQuery = this.repository.createQueryBuilder("orders");
 
-    return orders;
-  }
+    if (page) {
+      ordersQuery.offset(Number(page));
+    }
 
-  async findByProductId(product_id: string, skip: number): Promise<Order[]> {
-    const orders = await this.repository.query(
-      `SELECT * FROM orders WHERE array_to_string(products, ',') like '%${product_id}%' offset ${
-        !skip ? 1 : Number(skip)
-      }`
-    );
+    if (below_price) {
+      ordersQuery.andWhere("orders.totalPrice <= :below_price", {
+        below_price,
+      });
+    }
 
-    return orders;
-  }
+    if (up_price) {
+      ordersQuery.andWhere("orders.totalPrice >= :up_price", { up_price });
+    }
 
-  async findByDate(date: Date): Promise<Order[]> {
-    const orders = await this.repository.find({
-      order: {
-        totalPrice: "DESC",
-        created_at: "DESC",
-      },
-      where: {
-        created_at: MoreThanOrEqual(date),
-      },
-    });
+    if (date) {
+      ordersQuery.andWhere("orders.created_at = :date", {
+        date,
+      });
+    }
 
-    return orders;
-  }
-
-  async findByUpPrice(price: number): Promise<Order[]> {
-    const orders = await this.repository.find({
-      order: {
-        totalPrice: "DESC",
-        created_at: "DESC",
-      },
-      where: {
-        totalPrice: MoreThanOrEqual(price),
-      },
-    });
-
-    return orders;
-  }
-
-  async findByBelowPrice(price: number): Promise<Order[]> {
-    const orders = await this.repository.find({
-      order: {
-        totalPrice: "DESC",
-        created_at: "DESC",
-      },
-      where: {
-        totalPrice: LessThanOrEqual(price),
-      },
-    });
+    const orders = await ordersQuery.getMany();
 
     return orders;
   }

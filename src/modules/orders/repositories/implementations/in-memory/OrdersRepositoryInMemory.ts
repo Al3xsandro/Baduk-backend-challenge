@@ -1,11 +1,11 @@
 import { ICreateOrderDTO } from "@modules/orders/dtos/ICreateOrderDTO";
+import { IFindOrderDTO } from "@modules/orders/dtos/IFindOrderDTO";
 import { Order } from "@modules/orders/infra/typeorm/entities/Order";
 
 import { IOrdersRepository } from "../../IOrdersRepository";
 
 class OrdersRepositoryInMemory implements IOrdersRepository {
   constructor(private ordersRepository: Order[] = []) {}
-
   async create({
     customerId,
     products,
@@ -27,31 +27,13 @@ class OrdersRepositoryInMemory implements IOrdersRepository {
     return this.ordersRepository;
   }
 
-  async findByProductId(product_id: string): Promise<Order[]> {
-    const allOrders = [];
-    const orders = this.ordersRepository;
-
-    orders.map((order) => {
-      const parseProductsToString = JSON.stringify(order.products.toString());
-      const productOrders = parseProductsToString.includes(product_id);
-
-      if (productOrders) {
-        return allOrders.push(productOrders);
-      }
-
-      return [];
-    });
-
-    return allOrders;
-  }
-
-  findByDate(first_date: Date): Promise<Order[]> {
-    throw new Error("Method not implemented.");
-  }
-  findByUpPrice(price: number): Promise<Order[]> {
-    throw new Error("Method not implemented.");
-  }
-  findByBelowPrice(price: number): Promise<Order[]> {
+  find({
+    below_price,
+    date,
+    page,
+    product_id,
+    up_price,
+  }: IFindOrderDTO): Promise<Order[]> {
     throw new Error("Method not implemented.");
   }
 }

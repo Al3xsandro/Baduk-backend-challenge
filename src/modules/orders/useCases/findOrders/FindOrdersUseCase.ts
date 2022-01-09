@@ -24,34 +24,15 @@ class FindOrdersUseCase {
       if (!validator.isUUID(product_id)) {
         throw new AppError("Invalid product_id");
       }
-
-      const order = await this.ordersRepository.findByProductId(
-        String(product_id),
-        page
-      );
-
-      return order;
     }
 
-    if (date) {
-      const orders = await this.ordersRepository.findByDate(date);
-
-      return orders;
-    }
-
-    if (up_price) {
-      const orders = await this.ordersRepository.findByUpPrice(up_price);
-
-      return orders;
-    }
-
-    if (below_price) {
-      const orders = await this.ordersRepository.findByBelowPrice(below_price);
-
-      return orders;
-    }
-
-    const orders = await this.ordersRepository.findAllOrders(page);
+    const orders = await this.ordersRepository.find(
+      page,
+      product_id,
+      below_price,
+      up_price,
+      date
+    );
 
     return orders;
   }
