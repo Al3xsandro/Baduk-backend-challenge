@@ -2,7 +2,7 @@
 /* eslint-disable no-await-in-loop */
 import { inject, injectable } from "tsyringe";
 
-import { ICustomerRepository } from "@modules/customers/repositories/ICustumerRepository";
+import { ICustomerRepository } from "@modules/customers/repositories/ICustomerRepository";
 import { ICreateOrderDTO } from "@modules/orders/dtos/ICreateOrderDTO";
 import { Order } from "@modules/orders/infra/typeorm/entities/Order";
 import { IOrdersRepository } from "@modules/orders/repositories/IOrdersRepository";

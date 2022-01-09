@@ -9,7 +9,7 @@ import {
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
-import { Customer } from "@modules/customers/infra/typeorm/entities/Custumer";
+import { Customer } from "@modules/customers/infra/typeorm/entities/Customer";
 import { Product } from "@modules/products/infra/typeorm/entities/Product";
 
 @Entity("orders")

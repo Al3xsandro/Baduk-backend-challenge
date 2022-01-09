@@ -1,15 +1,15 @@
-import { ICreateCustumerDTO } from "../../../dtos/ICreateCustomer.dto";
-import { Customer } from "../../../infra/typeorm/entities/Custumer";
-import { ICustomerRepository } from "../../ICustumerRepository";
+import { ICreateCustomerDTO } from "../../../dtos/ICreateCustomer.dto";
+import { Customer } from "../../../infra/typeorm/entities/Customer";
+import { ICustomerRepository } from "../../ICustomerRepository";
 
 class CustomerRepositoryInMemory implements ICustomerRepository {
-  constructor(private custumerRepository: Customer[] = []) {}
+  constructor(private customerRepository: Customer[] = []) {}
 
   async create({
     name,
     email,
     telefone,
-  }: ICreateCustumerDTO): Promise<Customer> {
+  }: ICreateCustomerDTO): Promise<Customer> {
     const customer = new Customer();
 
     Object.assign(customer, {
@@ -18,28 +18,28 @@ class CustomerRepositoryInMemory implements ICustomerRepository {
       telefone,
     });
 
-    this.custumerRepository.push(customer);
+    this.customerRepository.push(customer);
 
     return customer;
   }
 
   async find(): Promise<Customer[]> {
-    const customers = this.custumerRepository;
+    const customers = this.customerRepository;
 
     return customers;
   }
 
   async findByEmail(email: string): Promise<Customer> {
-    const customer = this.custumerRepository.find(
-      (custumer) => custumer.email === email
+    const customer = this.customerRepository.find(
+      (customer) => customer.email === email
     );
 
     return customer;
   }
 
   async findById(id: string): Promise<Customer> {
-    const customer = this.custumerRepository.find(
-      (custumer) => custumer.id === id
+    const customer = this.customerRepository.find(
+      (customer) => customer.id === id
     );
 
     return customer;

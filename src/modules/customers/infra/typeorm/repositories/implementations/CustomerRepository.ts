@@ -1,34 +1,34 @@
 import { getRepository, Repository } from "typeorm";
 
-import { ICreateCustumerDTO } from "@modules/customers/dtos/ICreateCustomer.dto";
-import { Customer } from "@modules/customers/infra/typeorm/entities/Custumer";
-import { ICustomerRepository } from "@modules/customers/repositories/ICustumerRepository";
+import { ICreateCustomerDTO } from "@modules/customers/dtos/ICreateCustomer.dto";
+import { Customer } from "@modules/customers/infra/typeorm/entities/Customer";
+import { ICustomerRepository } from "@modules/customers/repositories/ICustomerRepository";
 import { AppError } from "@shared/errors/AppError";
 
-class CustumerRepository implements ICustomerRepository {
-  private repostory: Repository<Customer>;
+class CustomerRepository implements ICustomerRepository {
+  private repository: Repository<Customer>;
 
   constructor() {
-    this.repostory = getRepository(Customer);
+    this.repository = getRepository(Customer);
   }
 
   async create({
     name,
     email,
     telefone,
-  }: ICreateCustumerDTO): Promise<Customer> {
-    const customer = this.repostory.create({
+  }: ICreateCustomerDTO): Promise<Customer> {
+    const customer = this.repository.create({
       name,
       email,
       telefone,
     });
 
-    await this.repostory.save(customer);
+    await this.repository.save(customer);
 
     return customer;
   }
   async find(): Promise<Customer[]> {
-    const customers = await this.repostory.find();
+    const customers = await this.repository.find();
 
     if (!customers) {
       throw new AppError("An error was occurred!");
@@ -38,7 +38,7 @@ class CustumerRepository implements ICustomerRepository {
   }
 
   async findByEmail(email: string): Promise<Customer> {
-    const customer = await this.repostory.findOne({
+    const customer = await this.repository.findOne({
       where: {
         email,
       },
@@ -48,7 +48,7 @@ class CustumerRepository implements ICustomerRepository {
   }
 
   async findById(id: string): Promise<Customer> {
-    const customer = await this.repostory.findOne({
+    const customer = await this.repository.findOne({
       id,
     });
 
@@ -56,4 +56,4 @@ class CustumerRepository implements ICustomerRepository {
   }
 }
 
-export { CustumerRepository };
+export { CustomerRepository };

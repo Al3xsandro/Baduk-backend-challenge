@@ -1,4 +1,4 @@
-import { ICustomerRepository } from "@modules/customers/repositories/ICustumerRepository";
+import { ICustomerRepository } from "@modules/customers/repositories/ICustomerRepository";
 import { CustomerRepositoryInMemory } from "@modules/customers/repositories/implementations/in-memory/CustomerRepositoryInMemory";
 import { CreateCustomerUseCase } from "@modules/customers/userCases/createCustomer/CreateCustomerUseCase";
 import { AppError } from "@shared/errors/AppError";
@@ -39,7 +39,7 @@ describe("Customers", () => {
           email: "john@mock.com",
           telefone: "11945058392",
         })
-      ).rejects.toEqual(new AppError("Customer already exist!"));
+      ).rejects.toEqual(new AppError("Customer already exists!"));
     });
   });
 });

@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
 import { ICreateCustomerDTO } from "@modules/customers/dtos/ICreateCustomer.dto";
-import { ICustomerRepository } from "@modules/customers/repositories/ICustumerRepository";
+import { ICustomerRepository } from "@modules/customers/repositories/ICustomerRepository";
 import { AppError } from "@shared/errors/AppError";
 
 @injectable()

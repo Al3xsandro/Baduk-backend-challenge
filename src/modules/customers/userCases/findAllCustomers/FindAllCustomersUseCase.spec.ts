@@ -1,4 +1,4 @@
-import { ICustomerRepository } from "@modules/customers/repositories/ICustumerRepository";
+import { ICustomerRepository } from "@modules/customers/repositories/ICustomerRepository";
 import { CustomerRepositoryInMemory } from "@modules/customers/repositories/implementations/in-memory/CustomerRepositoryInMemory";
 import { CreateCustomerUseCase } from "@modules/customers/userCases/createCustomer/CreateCustomerUseCase";
 
