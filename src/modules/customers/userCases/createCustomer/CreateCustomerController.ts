@@ -2,14 +2,14 @@ import { Request, Response } from "express";
 import { container } from "tsyringe";
 import validator from "validator";
 
-import { ICreateCustumerDTO } from "@modules/customers/dtos/ICreateCustomer.dto";
+import { ICreateCustomerDTO } from "@modules/customers/dtos/ICreateCustomer.dto";
 import { AppError } from "@shared/errors/AppError";
 
 import { CreateCustomerUseCase } from "./CreateCustomerUseCase";
 
 class CreateCustomerController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { name, email, telefone }: ICreateCustumerDTO = request.body;
+    const { name, email, telefone }: ICreateCustomerDTO = request.body;
 
     if (!validator.isEmail(email)) {
       throw new AppError("Invalid e-mail");

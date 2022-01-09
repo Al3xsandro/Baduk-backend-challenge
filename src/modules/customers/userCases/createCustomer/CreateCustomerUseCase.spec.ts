@@ -15,7 +15,7 @@ describe("Customers", () => {
     expect(customerUserCase).toBeDefined();
   });
 
-  describe("[POST] Create custumer", () => {
+  describe("[POST] Create customer", () => {
     it("should be able to create a new customer", async () => {
       const customer = await customerRepositoryInMemory.create({
         name: "john",
@@ -39,7 +39,7 @@ describe("Customers", () => {
           email: "john@mock.com",
           telefone: "11945058392",
         })
-      ).rejects.toEqual(new AppError("Customer already exists!"));
+      ).rejects.toEqual(new AppError("Customer already exist!"));
     });
   });
 });
