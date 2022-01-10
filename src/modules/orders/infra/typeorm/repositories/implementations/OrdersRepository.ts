@@ -57,6 +57,12 @@ class OrdersRepository implements IOrdersRepository {
       });
     }
 
+    if (product_id) {
+      ordersQuery.andWhere("array_to_string(products, ',') like :product", {
+        product: `%${product_id}%`,
+      });
+    }
+
     const orders = await ordersQuery.getMany();
 
     return orders;
